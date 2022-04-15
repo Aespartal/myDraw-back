@@ -14,24 +14,23 @@
     <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801195538_added_entity_Usuario.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801195638_added_entity_Album.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801195738_added_entity_Imagen.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801195838_added_entity_BackgroundColor.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801195938_added_entity_Categoria.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801200038_added_entity_Logro.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801200138_added_entity_Comentario.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801200238_added_entity_LikeAlbum.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801200338_added_entity_LikeComentario.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801200438_added_entity_DisLikeComentario.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20210801195538_added_entity_constraints_Usuario.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801195638_added_entity_constraints_Album.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801195738_added_entity_constraints_Imagen.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801200138_added_entity_constraints_Comentario.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801200238_added_entity_constraints_LikeAlbum.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801200338_added_entity_constraints_LikeComentario.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210801200438_added_entity_constraints_DisLikeComentario.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122118_added_entity_ExtendedUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122518_added_entity_Category.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122418_added_entity_BackgroundColor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122218_added_entity_Album.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122318_added_entity_Image.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122618_added_entity_Commentary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122718_added_entity_LikeAlbum.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122818_added_entity_LikeCommentary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122918_added_entity_DisLikeCommentary.xml" relativeToChangelogFile="false"/>
+
+    <include file="config/liquibase/changelog/20220415122118_added_entity_constraints_ExtendedUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122218_added_entity_constraints_Album.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122318_added_entity_constraints_Image.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122618_added_entity_constraints_Commentary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122718_added_entity_constraints_LikeAlbum.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122818_added_entity_constraints_LikeCommentary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220415122918_added_entity_constraints_DisLikeCommentary.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

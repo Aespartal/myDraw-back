@@ -1,0 +1,33 @@
+{
+  "name": "LikeCommentary",
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "extendedUser",
+      "otherEntityRelationshipName": "likeCommentary",
+      "relationshipValidateRules": "required",
+      "relationshipName": "extendedUser",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "commentary",
+      "otherEntityRelationshipName": "likeCommentary",
+      "relationshipValidateRules": "required",
+      "relationshipName": "comentary",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20220415122818",
+  "entityTableName": "like_commentary",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

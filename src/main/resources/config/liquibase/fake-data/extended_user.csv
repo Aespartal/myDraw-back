@@ -1,0 +1,4 @@
+id;telephone;birthdate;description;image_cover;image_cover_content_type;gender;background_color_id
+1;421-479-6027 x992;2022-04-15;Netherlands TCP;../fake-data/blob/hipster.png;image/png;MEN;1
+2;272.671.3663 x5405;2022-04-14;ubiquitous Forward;../fake-data/blob/hipster.png;image/png;MEN;2
+3;1-226-695-1064 x3339;2022-04-15;bandwidth Money Market Account;../fake-data/blob/hipster.png;image/png;WOMAN;3

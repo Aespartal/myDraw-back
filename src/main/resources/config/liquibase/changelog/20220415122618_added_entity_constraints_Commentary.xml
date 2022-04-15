@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Commentary.
+    -->
+    <changeSet id="20220415122618-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="extended_user_id"
+                                 baseTableName="commentary"
+                                 constraintName="fk_commentary_extended_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="extended_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="album_id"
+                                 baseTableName="commentary"
+                                 constraintName="fk_commentary_album_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="album"/>
+
+    </changeSet>
+</databaseChangeLog>

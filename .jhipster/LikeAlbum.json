@@ -1,0 +1,33 @@
+{
+  "name": "LikeAlbum",
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "extendedUser",
+      "otherEntityRelationshipName": "likeAlbum",
+      "relationshipValidateRules": "required",
+      "relationshipName": "extendedUser",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "album",
+      "otherEntityRelationshipName": "likeAlbum",
+      "relationshipValidateRules": "required",
+      "relationshipName": "album",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20220415122718",
+  "entityTableName": "like_album",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

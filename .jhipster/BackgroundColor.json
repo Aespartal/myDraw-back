@@ -1,0 +1,34 @@
+{
+  "name": "BackgroundColor",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "extendedUser",
+      "otherEntityRelationshipName": "backgroundColor",
+      "relationshipName": "extendedUser"
+    }
+  ],
+  "changelogDate": "20220415122418",
+  "entityTableName": "background_color",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

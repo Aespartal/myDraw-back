@@ -1,0 +1,67 @@
+{
+  "name": "ExtendedUser",
+  "fields": [
+    {
+      "fieldName": "telephone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "birthdate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "3500"
+    },
+    {
+      "fieldName": "imageCover",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValues": "MEN,WOMAN",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "extendedUser",
+      "relationshipName": "user",
+      "otherEntityField": "id",
+      "ownerSide": true,
+      "useJPADerivedIdentifier": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "album",
+      "otherEntityRelationshipName": "extendedUser",
+      "relationshipName": "album"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "backgroundColor",
+      "otherEntityRelationshipName": "extendedUser",
+      "relationshipValidateRules": "required",
+      "relationshipName": "backgroundColor",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20220415122118",
+  "entityTableName": "extended_user",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

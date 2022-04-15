@@ -1,0 +1,33 @@
+{
+  "name": "DisLikeCommentary",
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "extendedUser",
+      "otherEntityRelationshipName": "disLikeCommentary",
+      "relationshipValidateRules": "required",
+      "relationshipName": "extendedUser",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "commentary",
+      "otherEntityRelationshipName": "disLikeCommentary",
+      "relationshipValidateRules": "required",
+      "relationshipName": "comentary",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20220415122918",
+  "entityTableName": "dis_like_commentary",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
