@@ -154,14 +154,13 @@ public class UserService {
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
         user.setActivated(true);
-        if (userDTO.getAuthorities() != null) {
-            Set<Authority> authorities = userDTO.getAuthorities().stream()
-                .map(authorityRepository::findById)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.toSet());
-            user.setAuthorities(authorities);
-        }
+        Set<Authority> authorities = userDTO.getAuthorities().stream()
+            .map(authorityRepository::findById)
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .collect(Collectors.toSet());
+        user.setAuthorities(authorities);
+        checkUserAuthorities(user);
         userRepository.save(user);
         this.clearUserCaches(user);
         log.debug("Created Information for User: {}", user);
@@ -299,6 +298,14 @@ public class UserService {
         Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE)).evict(user.getLogin());
         if (user.getEmail() != null) {
             Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE)).evict(user.getEmail());
+        }
+    }
+
+    private void checkUserAuthorities(User user) {
+        Optional<Authority> userAuthorityOptional = authorityRepository.findById(AuthoritiesConstants.USER);
+        if (userAuthorityOptional.isPresent()) {
+            Authority userAuthority = userAuthorityOptional.get();
+            user.getAuthorities().add(userAuthority);
         }
     }
 }
