@@ -1,5 +1,6 @@
 package com.project.mydraw.service;
 
+import com.project.mydraw.domain.BackgroundColor;
 import com.project.mydraw.service.dto.BackgroundColorDTO;
 
 import org.springframework.data.domain.Page;
@@ -43,4 +44,6 @@ public interface BackgroundColorService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    BackgroundColor getBackgroundColorDefault();
 }

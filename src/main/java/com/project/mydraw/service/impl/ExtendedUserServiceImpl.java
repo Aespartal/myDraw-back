@@ -1,11 +1,18 @@
 package com.project.mydraw.service.impl;
 
+import com.project.mydraw.domain.BackgroundColor;
+import com.project.mydraw.domain.User;
+import com.project.mydraw.service.BackgroundColorService;
 import com.project.mydraw.service.ExtendedUserService;
 import com.project.mydraw.domain.ExtendedUser;
 import com.project.mydraw.repository.ExtendedUserRepository;
-import com.project.mydraw.repository.UserRepository;
+import com.project.mydraw.service.UserService;
+import com.project.mydraw.service.dto.BackgroundColorDTO;
 import com.project.mydraw.service.dto.ExtendedUserDTO;
+import com.project.mydraw.service.dto.UserDTO;
+import com.project.mydraw.service.dto.UserMinimalDTO;
 import com.project.mydraw.service.mapper.ExtendedUserMapper;
+import com.project.mydraw.service.mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,20 +36,33 @@ public class ExtendedUserServiceImpl implements ExtendedUserService {
 
     private final ExtendedUserMapper extendedUserMapper;
 
-    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public ExtendedUserServiceImpl(ExtendedUserRepository extendedUserRepository, ExtendedUserMapper extendedUserMapper, UserRepository userRepository) {
+    private final UserService userService;
+
+    private final BackgroundColorService backgroundColorService;
+
+    public ExtendedUserServiceImpl(ExtendedUserRepository extendedUserRepository, ExtendedUserMapper extendedUserMapper, UserMapper userMapper, UserService userService, BackgroundColorService backgroundColorService) {
         this.extendedUserRepository = extendedUserRepository;
         this.extendedUserMapper = extendedUserMapper;
-        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+        this.userService = userService;
+        this.backgroundColorService = backgroundColorService;
     }
 
     @Override
     public ExtendedUserDTO save(ExtendedUserDTO extendedUserDTO) {
         log.debug("Request to save ExtendedUser : {}", extendedUserDTO);
         ExtendedUser extendedUser = extendedUserMapper.toEntity(extendedUserDTO);
-        Long userId = extendedUserDTO.getUserId();
-        userRepository.findById(userId).ifPresent(extendedUser::user);
+        UserMinimalDTO userMinimalDTO = extendedUserDTO.getUser();
+        User user = mapUserMinimalDTOToUser(userMinimalDTO);
+        UserDTO userDTO = mapUserToUserDTO(user);
+        if(userDTO.getId() == null) {
+            user = userService.createUser(userDTO);
+        } else {
+             user = userService.updateUserWithUserDTO(userDTO);
+        }
+        fillExtendedUser(extendedUser, user);
         extendedUser = extendedUserRepository.save(extendedUser);
         return extendedUserMapper.toDto(extendedUser);
     }
@@ -67,6 +87,31 @@ public class ExtendedUserServiceImpl implements ExtendedUserService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete ExtendedUser : {}", id);
+        Optional<ExtendedUser> extendedUserOptional = extendedUserRepository.findById(id);
+        if (!extendedUserOptional.isPresent()) {
+            return;
+        }
+        ExtendedUser extendedUser = extendedUserOptional.get();
+        User user = extendedUser.getUser();
         extendedUserRepository.deleteById(id);
+        userService.deleteUser(user.getLogin());
+        userService.clearUserCaches(user);
+    }
+
+    private void fillExtendedUser(ExtendedUser extendedUser, User user) {
+        extendedUser.setUser(user);
+        if(extendedUser.getBackgroundColor() == null) {
+            BackgroundColor backgroundColor = backgroundColorService.getBackgroundColorDefault();
+            extendedUser.setBackgroundColor(backgroundColor);
+        }
+    }
+
+
+    private User mapUserMinimalDTOToUser(UserMinimalDTO userMinimalDTO) {
+        return userMapper.userMinimalDTOToUser(userMinimalDTO);
+    }
+
+    private UserDTO mapUserToUserDTO(User user) {
+        return userMapper.userToUserDTO(user);
     }
 }

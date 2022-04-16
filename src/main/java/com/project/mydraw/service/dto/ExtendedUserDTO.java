@@ -10,7 +10,7 @@ import com.project.mydraw.domain.enumeration.Gender;
  * A DTO for the {@link com.project.mydraw.domain.ExtendedUser} entity.
  */
 public class ExtendedUserDTO implements Serializable {
-    
+
     private Long id;
 
     private String telephone;
@@ -31,8 +31,10 @@ public class ExtendedUserDTO implements Serializable {
 
     private Long userId;
 
+    private UserMinimalDTO user;
+
     private Long backgroundColorId;
-    
+
     public Long getId() {
         return id;
     }
@@ -103,6 +105,14 @@ public class ExtendedUserDTO implements Serializable {
 
     public void setBackgroundColorId(Long backgroundColorId) {
         this.backgroundColorId = backgroundColorId;
+    }
+
+    public UserMinimalDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserMinimalDTO user) {
+        this.user = user;
     }
 
     @Override

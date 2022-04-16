@@ -28,6 +28,8 @@ public class BackgroundColorServiceImpl implements BackgroundColorService {
 
     private final BackgroundColorMapper backgroundColorMapper;
 
+    private final static long backgroundColor = 1;
+
     public BackgroundColorServiceImpl(BackgroundColorRepository backgroundColorRepository, BackgroundColorMapper backgroundColorMapper) {
         this.backgroundColorRepository = backgroundColorRepository;
         this.backgroundColorMapper = backgroundColorMapper;
@@ -62,5 +64,10 @@ public class BackgroundColorServiceImpl implements BackgroundColorService {
     public void delete(Long id) {
         log.debug("Request to delete BackgroundColor : {}", id);
         backgroundColorRepository.deleteById(id);
+    }
+
+    @Override
+    public BackgroundColor getBackgroundColorDefault() {
+        return backgroundColorRepository.findById(backgroundColor).get();
     }
 }

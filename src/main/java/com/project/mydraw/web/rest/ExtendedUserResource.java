@@ -63,9 +63,6 @@ public class ExtendedUserResource {
         if (extendedUserDTO.getId() != null) {
             throw new BadRequestAlertException("A new extendedUser cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        if (Objects.isNull(extendedUserDTO.getUserId())) {
-            throw new BadRequestAlertException("Invalid association value provided", ENTITY_NAME, "null");
-        }
         ExtendedUserDTO result = extendedUserService.save(extendedUserDTO);
         return ResponseEntity.created(new URI("/api/extended-users/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))

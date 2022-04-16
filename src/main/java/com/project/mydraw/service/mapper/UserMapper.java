@@ -4,6 +4,7 @@ import com.project.mydraw.domain.Authority;
 import com.project.mydraw.domain.User;
 import com.project.mydraw.service.dto.UserDTO;
 
+import com.project.mydraw.service.dto.UserMinimalDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -25,14 +26,32 @@ public class UserMapper {
             .collect(Collectors.toList());
     }
 
+    public List<UserMinimalDTO> usersToUserMinimalDTOs(List<User> users) {
+        return users.stream()
+            .filter(Objects::nonNull)
+            .map(this::userToUserMinimalDTO)
+            .collect(Collectors.toList());
+    }
+
     public UserDTO userToUserDTO(User user) {
         return new UserDTO(user);
+    }
+
+    public UserMinimalDTO userToUserMinimalDTO(User user) {
+        return new UserMinimalDTO(user);
     }
 
     public List<User> userDTOsToUsers(List<UserDTO> userDTOs) {
         return userDTOs.stream()
             .filter(Objects::nonNull)
             .map(this::userDTOToUser)
+            .collect(Collectors.toList());
+    }
+
+    public List<User> userMinimalDTOsToUsers(List<UserMinimalDTO> userMinimalDTOs) {
+        return userMinimalDTOs.stream()
+            .filter(Objects::nonNull)
+            .map(this::userMinimalDTOToUser)
             .collect(Collectors.toList());
     }
 
@@ -50,6 +69,24 @@ public class UserMapper {
             user.setActivated(userDTO.isActivated());
             user.setLangKey(userDTO.getLangKey());
             Set<Authority> authorities = this.authoritiesFromStrings(userDTO.getAuthorities());
+            user.setAuthorities(authorities);
+            return user;
+        }
+    }
+
+    public User userMinimalDTOToUser(UserMinimalDTO userMinimalDTO) {
+        if (userMinimalDTO == null) {
+            return null;
+        } else {
+            User user = new User();
+            user.setId(userMinimalDTO.getId());
+            user.setLogin(userMinimalDTO.getLogin());
+            user.setFirstName(userMinimalDTO.getFirstName());
+            user.setLastName(userMinimalDTO.getLastName());
+            user.setEmail(userMinimalDTO.getEmail());
+            user.setImageUrl(userMinimalDTO.getImageUrl());
+            user.setActivated(userMinimalDTO.isActivated());
+            Set<Authority> authorities = this.authoritiesFromStrings(userMinimalDTO.getAuthorities());
             user.setAuthorities(authorities);
             return user;
         }
